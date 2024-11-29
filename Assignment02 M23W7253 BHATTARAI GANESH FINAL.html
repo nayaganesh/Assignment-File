@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<head>
+
+  <title>Simple Math Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h1 {
+      color: #007BFF;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin-top: 20px;
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.2em;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 1.2em;
+      color: #333;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+	<h1>Name: Bhattarai Ganesh <br> Student ID: M23W7253</h1>
+    <h2>Simple Math Calculator</h2>
+    <p>Click the button below for calculation:</p>
+    <button onclick="startCalculator()">Let's Calculate</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function startCalculator() {
+      const operation = prompt(
+        "Enter the operation number:\n1: Addition (+)\n2: Subtraction (-)\n3: Multiplication (*)\n4: Division (/)\n5: Exponentiation (^)\n6: Cube Root\n7: Logarithm (base 10)"
+      );
+      if (operation < 1 || operation > 7 || isNaN(operation)) {
+        alert("Invalid operation! Please refresh and try again.");
+        return;
+      }
+
+      let num1, num2, result;
+
+      if (operation <= 5) {
+        num1 = parseFloat(prompt("Enter the first number:"));
+        num2 = parseFloat(prompt("Enter the second number:"));
+
+        if (isNaN(num1) || isNaN(num2)) {
+          alert("Invalid input! Please refresh and try again.");
+          return;
+        }
+      } else {
+        num1 = parseFloat(prompt("Enter the number:"));
+
+        if (isNaN(num1)) {
+          alert("Invalid input! Please refresh and try again.");
+          return;
+        }
+      }
+      if (operation == 1) {
+        result = num1 + num2; 
+      } else if (operation == 2) {
+        result = num1 - num2; 
+      } else if (operation == 3) {
+        result = num1 * num2; 
+      } else if (operation == 4) {
+        if (num2 === 0) {
+          alert("Division by zero is not allowed!");
+          return;
+        }
+        result = num1 / num2; 
+      } else if (operation == 5) {
+        result = Math.pow(num1, num2); 
+      } else if (operation == 6) {
+        result = Math.cbrt(num1);
+      } else if (operation == 7) {
+        if (num1 <= 0) {
+          alert("Logarithm is only defined for positive numbers!");
+          return;
+        }
+        result = Math.log10(num1); 
+      }
+      document.getElementById("result").textContent = `The result is: ${result}`;
+    }
+  </script>
+</body>
+</html>
